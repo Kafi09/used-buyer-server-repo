@@ -36,7 +36,12 @@ async function run() {
             res.send(buyerInfos);
         });
 
-        
+        app.post('/buyerInfos', async (req, res) => {
+            const buyerInfo = req.body;
+            console.log(buyerInfo);
+            const result = await buyerCollection.insertOne(buyerInfo);
+            res.send(buyerInfo);
+        });
     }
     finally {
 
