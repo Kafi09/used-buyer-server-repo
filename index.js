@@ -18,7 +18,7 @@ async function run() {
     try {
         const categoriesCollection = client.db('usedBuyer').collection('categories');
 
-        
+        const buyerCollection = client.db('usedBuyer').collection('buyerInfos');
        
 
         app.get('/categoriesCollection', async (req, res) => {
@@ -27,6 +27,13 @@ async function run() {
             res.send(options);
             
             
+        });
+
+        app.get('/buyerInfos', async (req, res) => {
+            const email = req.query.email;
+            const query = { email: email };
+            const buyerInfos = await buyerCollection.find(query).toArray();
+            res.send(buyerInfos);
         });
 
         
